@@ -14,10 +14,10 @@ age = st.number_input("Age", min_value=18, max_value=100)
 gender = st.selectbox("Gender", ["Male", "Female"])
 marital = st.selectbox("Marital Status", ["Single", "Married", "Divorced", "Widowed"])
 education = st.selectbox("Education", ["High School", "Bachelor", "Master", "PhD", "Other"])
-employment = st.selectbox("Employment Status", ["Employed", "Self-employed", "Unemployed"])
+employment = st.selectbox("Employment Status", ["Employed", "Self-employed", "Unemployed", "Retired", "Student"])
 income = st.number_input("Annual Income ($)", min_value=0)
 loan = st.number_input("Loan Amount Requested ($)", min_value=0)
-purpose = st.selectbox("Purpose of Loan", ["Personal", "Home", "Car", "Education", "Vacation"])
+purpose = st.selectbox("Purpose of Loan", ["Personal", "Home", "Car", "Education", "Business"])
 credit_score = st.slider("Credit Score", 300, 850)
 existing_loans = st.slider("Existing Loans Count", 0, 10)
 late_payments = st.slider("Late Payments Last Year", 0, 12)
@@ -37,9 +37,11 @@ edu_other = 1 if education == "Other" else 0
 edu_phd = 1 if education == "PhD" else 0
 emp_self = 1 if employment == "Self-employed" else 0
 emp_unemp = 1 if employment == "Unemployed" else 0
+emp_retired = 1 if employment == "Retired" else 0
+emp_student = 1 if employment == "Student" else 0
 purpose_home = 1 if purpose == "Home" else 0
 purpose_personal = 1 if purpose == "Personal" else 0
-purpose_vac = 1 if purpose == "Vacation" else 0
+purpose_bus = 1 if purpose == "Business" else 0
 
 # Final input vector (must match training order!)
 input_data = np.array([[
@@ -48,8 +50,8 @@ input_data = np.array([[
     gender_male,
     married, single, widowed, divorced,
     edu_master, edu_other, edu_phd,
-    emp_self, emp_unemp,
-    purpose_home, purpose_personal, purpose_vac,
+    emp_self, emp_unemp, emp_retired, emp_student,
+    purpose_home, purpose_personal, purpose_bus,
     debt_to_income
 ]])
 
