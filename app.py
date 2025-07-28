@@ -60,3 +60,6 @@ if st.button("Predict Default Risk"):
 
 st.markdown("---")
 st.markdown("Designed for financial analysts and loan officers. Ensure all information is correct before prediction.")
+
+st.write("Expected features:", model.n_features_in_)
+st.write("Your input shape:", input_data.shape)
