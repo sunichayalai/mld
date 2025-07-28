@@ -31,6 +31,7 @@ gender_male = 1 if gender == "Male" else 0
 married = 1 if marital == "Married" else 0
 single = 1 if marital == "Single" else 0
 widowed = 1 if marital == "Widowed" else 0
+divorced = 1 if marital == "Divorced" else 0
 edu_master = 1 if education == "Master" else 0
 edu_other = 1 if education == "Other" else 0
 edu_phd = 1 if education == "PhD" else 0
@@ -45,7 +46,7 @@ input_data = np.array([[
     age, income, loan, credit_score, existing_loans, late_payments,
     loan_to_income,
     gender_male,
-    married, single, widowed,
+    married, single, widowed, divorced,
     edu_master, edu_other, edu_phd,
     emp_self, emp_unemp,
     purpose_home, purpose_personal, purpose_vac,
