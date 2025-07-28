@@ -57,9 +57,9 @@ input_data = np.array([[
 ]])
 
 # Prediction
-if st.button("Predict Default Risk"):
+if st.button("Predict Loan approval"):
     prediction = model.predict(input_data)[0]
-    result = "🔴 Likely to Default" if prediction == 1 else "🟢 Low Risk"
+    result = "Loan not approved" if prediction == 1 else "Loan approved"
     st.markdown(f"### Result: {result}")
 
 st.markdown("---")
