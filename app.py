@@ -28,6 +28,7 @@ debt_to_income = loan / (income + 1)
 
 # Manual one-hot encoding (as in notebook)
 gender_male = 1 if gender == "Male" else 0
+gender_female = 1 if gender == "Female" else 0
 married = 1 if marital == "Married" else 0
 single = 1 if marital == "Single" else 0
 widowed = 1 if marital == "Widowed" else 0
@@ -47,7 +48,7 @@ purpose_bus = 1 if purpose == "Business" else 0
 input_data = np.array([[
     age, income, loan, credit_score, existing_loans, late_payments,
     loan_to_income,
-    gender_male,
+    gender_male, gender_female,
     married, single, widowed, divorced,
     edu_master, edu_other, edu_phd,
     emp_self, emp_unemp, emp_retired, emp_student,
