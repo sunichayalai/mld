@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 
 # Load your final trained model (save this in your notebook with joblib.dump(best_model, "final_rf_model.pkl"))
-model = joblib.load("model.pkl")
+model = joblib.load('model.pkl')
 
 # Set up page
 st.set_page_config(page_title="Loan Default Predictor", layout="centered")
@@ -62,3 +62,8 @@ if st.button("Predict Loan Approval"):
 
 st.markdown("---")
 st.info("Ensure all applicant details are accurate before submitting.")
+
+print(model.feature_names_in_)
+print(len(model.feature_names_in_))
+print(input_data.shape)
+
