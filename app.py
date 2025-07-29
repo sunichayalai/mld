@@ -63,7 +63,5 @@ if st.button("Predict Loan Approval"):
 st.markdown("---")
 st.info("Ensure all applicant details are accurate before submitting.")
 
-print(model.feature_names_in_)
-print(len(model.feature_names_in_))
 print(input_data.shape)
 
