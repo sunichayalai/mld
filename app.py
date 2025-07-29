@@ -2,15 +2,15 @@ import streamlit as st
 import numpy as np
 import joblib
 
-# Load your final trained model (save this in your notebook with joblib.dump(best_model, "final_rf_model.pkl"))
-model = joblib.load('model.pkl')
+# Load model (match the filename you used when saving)
+model = joblib.load('model.pkl')  # change if needed
 
-# Set up page
+# Features must match training time exactly
 st.set_page_config(page_title="Loan Default Predictor", layout="centered")
 st.markdown("<h1 style='text-align: center; color: navy;'>Loan Default Risk Prediction</h1>", unsafe_allow_html=True)
 st.markdown("### Applicant Details")
 
-# User inputs
+# Inputs
 age = st.number_input("Age", min_value=18, max_value=100)
 gender = st.selectbox("Gender", ["Male", "Female"])
 marital = st.selectbox("Marital Status", ["Single", "Married", "Divorced", "Widowed"])
@@ -23,10 +23,9 @@ credit_score = st.slider("Credit Score", 300, 850)
 existing_loans = st.slider("Existing Loans Count", 0, 10)
 late_payments = st.slider("Late Payments Last Year", 0, 12)
 
-# Derived
 loan_to_income = loan / (income + 1)
 
-# Manual one-hot encoding (must match notebook)
+# Manual encoding (must match training time!)
 gender_male = 1 if gender == "Male" else 0
 married = 1 if marital == "Married" else 0
 single = 1 if marital == "Single" else 0
@@ -43,7 +42,7 @@ purpose_home = 1 if purpose == "Home" else 0
 purpose_personal = 1 if purpose == "Personal" else 0
 purpose_bus = 1 if purpose == "Business" else 0
 
-# Final input vector — MATCH the order used in training!
+# This must match model training feature order
 input_data = np.array([[ 
     age, income, loan, credit_score, existing_loans, late_payments, loan_to_income,
     gender_male,
@@ -53,16 +52,14 @@ input_data = np.array([[
     purpose_home, purpose_personal, purpose_bus
 ]])
 
-
-# Predict
 if st.button("Predict Loan Approval"):
-    prediction = model.predict(input_data)[0]
-    result = "✅ Loan Approved" if prediction == 0 else "❌ Loan Not Approved"
-    color = "green" if prediction == 0 else "red"
-    st.markdown(f"<h3 style='color:{color}; text-align:center;'>{result}</h3>", unsafe_allow_html=True)
+    try:
+        prediction = model.predict(input_data)[0]
+        result = "✅ Loan Approved" if prediction == 0 else "❌ Loan Not Approved"
+        color = "green" if prediction == 0 else "red"
+        st.markdown(f"<h3 style='color:{color}; text-align:center;'>{result}</h3>", unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Prediction failed: {str(e)}")
 
 st.markdown("---")
 st.info("Ensure all applicant details are accurate before submitting.")
-
-print(input_data.shape)
-
