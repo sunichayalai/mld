@@ -44,12 +44,18 @@ purpose_bus = 1 if purpose == "Business" else 0
 
 # This must match model training feature order
 input_data = np.array([[ 
-    age, income, loan, credit_score, existing_loans, late_payments, loan_to_income,
+    age,
+    income,
+    loan,
+    credit_score,
+    existing_loans,
+    late_payments,
+    loan_to_income,
     gender_male,
-    married, single, widowed, divorced,
-    edu_master, edu_other, edu_phd,
-    emp_self, emp_unemp, emp_retired, emp_student,
-    purpose_home, purpose_personal, purpose_bus
+    married,
+    edu_master,
+    emp_self,
+    purpose_home
 ]])
 
 if st.button("Predict Loan Approval"):
