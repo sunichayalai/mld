@@ -53,6 +53,7 @@ input_data = np.array([[
     purpose_home, purpose_personal, purpose_bus
 ]])
 
+
 # Predict
 if st.button("Predict Loan Approval"):
     prediction = model.predict(input_data)[0]
