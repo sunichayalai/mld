@@ -2,14 +2,15 @@ import streamlit as st
 import numpy as np
 import joblib
 
-model = joblib.load("model.pkl")
+# Load your final trained model (save this in your notebook with joblib.dump(best_model, "final_rf_model.pkl"))
+model = joblib.load("final_rf_model.pkl")
 
+# Set up page
 st.set_page_config(page_title="Loan Default Predictor", layout="centered")
 st.markdown("<h1 style='text-align: center; color: navy;'>Loan Default Risk Prediction</h1>", unsafe_allow_html=True)
+st.markdown("### Applicant Details")
 
-st.write("Enter the applicant's details below:")
-
-# Collect inputs
+# User inputs
 age = st.number_input("Age", min_value=18, max_value=100)
 gender = st.selectbox("Gender", ["Male", "Female"])
 marital = st.selectbox("Marital Status", ["Single", "Married", "Divorced", "Widowed"])
@@ -22,13 +23,11 @@ credit_score = st.slider("Credit Score", 300, 850)
 existing_loans = st.slider("Existing Loans Count", 0, 10)
 late_payments = st.slider("Late Payments Last Year", 0, 12)
 
-# Derived features
+# Derived
 loan_to_income = loan / (income + 1)
-debt_to_income = loan / (income + 1)
 
-# Manual one-hot encoding (as in notebook)
+# Manual one-hot encoding (must match notebook)
 gender_male = 1 if gender == "Male" else 0
-gender_female = 1 if gender == "Female" else 0
 married = 1 if marital == "Married" else 0
 single = 1 if marital == "Single" else 0
 widowed = 1 if marital == "Widowed" else 0
@@ -44,26 +43,22 @@ purpose_home = 1 if purpose == "Home" else 0
 purpose_personal = 1 if purpose == "Personal" else 0
 purpose_bus = 1 if purpose == "Business" else 0
 
-# Final input vector (must match training order!)
-input_data = np.array([[
-    age, income, loan, credit_score, existing_loans, late_payments,
-    loan_to_income,
-    gender_male, gender_female,
+# Final input vector — MATCH the order used in training!
+input_data = np.array([[ 
+    age, income, loan, credit_score, existing_loans, late_payments, loan_to_income,
+    gender_male,
     married, single, widowed, divorced,
     edu_master, edu_other, edu_phd,
     emp_self, emp_unemp, emp_retired, emp_student,
-    purpose_home, purpose_personal, purpose_bus,
-    debt_to_income
+    purpose_home, purpose_personal, purpose_bus
 ]])
 
-# Prediction
-if st.button("Predict Loan approval"):
+# Predict
+if st.button("Predict Loan Approval"):
     prediction = model.predict(input_data)[0]
-    result = "Loan not approved" if prediction == 1 else "Loan approved"
-    st.markdown(f"### Result: {result}")
+    result = "✅ Loan Approved" if prediction == 0 else "❌ Loan Not Approved"
+    color = "green" if prediction == 0 else "red"
+    st.markdown(f"<h3 style='color:{color}; text-align:center;'>{result}</h3>", unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown("Designed for financial analysts and loan officers. Ensure all information is correct before prediction.")
-
-st.write("Expected features:", model.n_features_in_)
-st.write("Your input shape:", input_data.shape)
+st.info("Ensure all applicant details are accurate before submitting.")
