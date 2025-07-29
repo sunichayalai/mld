@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 
 # Load your final trained model (save this in your notebook with joblib.dump(best_model, "final_rf_model.pkl"))
-model = joblib.load("final_rf_model.pkl")
+model = joblib.load("model.pkl")
 
 # Set up page
 st.set_page_config(page_title="Loan Default Predictor", layout="centered")
