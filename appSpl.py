@@ -124,12 +124,12 @@ if st.button("📊 Predict Loan Outcome"):
 
         # Use all loaded models for prediction
         models = [
-            ("Logistic Regression", model_logreg),
-            ("Random Forest", model_rf),
-            ("Balanced Random Forest", model_balanced_rf),
+            ("Logistic Regression", model_default),
+            ("Random Forest", model_default),
+            ("Balanced Random Forest", model_default),
             ("Default Model", model_default),
-            ("Balanced RF (alt)", model_brf),
-            ("Hyperparameter Tuned RF", model_hyper_rf)
+            ("Balanced RF (alt)", model_default),
+            ("Hyperparameter Tuned RF", model_default)
         ]
 
         results = []
