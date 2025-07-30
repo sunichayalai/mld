@@ -11,6 +11,71 @@ best_model_name = "Balanced Random Forest"
 # Streamlit config
 st.set_page_config(page_title="Loan Predictor", page_icon="💰", layout="centered")
 
+st.markdown("""
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .main {
+            background: linear-gradient(to bottom right, #a18cd1, #fbc2eb);
+            color: #fff;
+        }
+        .stApp {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: white;
+        }
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        input, select, textarea {
+            border-radius: 10px !important;
+        }
+        .stButton button {
+            background-color: #6a11cb;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .stButton button:hover {
+            background-color: #2575fc;
+            color: white;
+            transform: scale(1.02);
+        }
+        .css-1cpxqw2 {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 10px !important;
+            padding: 1rem !important;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: #eee;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+    <h1 style='text-align: center; color: white;'>📈 Loan Approval Predictor</h1>
+    <p style='text-align: center; font-size: 18px; color: white;'>
+        Get instant predictions for your loan application using our advanced AI models
+    </p>
+    <div style='text-align: center; margin-top: 10px; margin-bottom: 30px;'>
+        <button style='margin-right: 10px; padding: 8px 20px; border: none; border-radius: 20px; background-color: white; color: #6a11cb;'>📄 View Dynamic Requirements</button>
+        <button style='padding: 8px 20px; border: none; border-radius: 20px; background-color: white; color: #6a11cb;'>🤖 Available Models</button>
+    </div>
+""", unsafe_allow_html=True)
+
+
 # App header
 st.markdown("""
     <h1 style='text-align: center; color: #003366;'>💳 Loan Default Risk Predictor</h1>
@@ -96,7 +161,7 @@ input_data = np.array([[
 ]])
 
 # Prediction logic
-if st.button("📊 Predict Loan Outcome"):
+if st.button("🧾 Predict Loan Approval"):
     try:
         # Check for missing features
         expected_features = [
