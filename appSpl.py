@@ -7,12 +7,6 @@ model_default = joblib.load("model.pkl")
 
 # You can update this with your actual best model's metrics
 best_model_name = "Balanced Random Forest"
-model_metrics = {
-    "Accuracy": 0.83,
-    "Precision": 0.76,
-    "Recall": 0.80,
-    "F1 Score": 0.78
-}
 
 # Streamlit config
 st.set_page_config(page_title="Loan Predictor", page_icon="💰", layout="centered")
