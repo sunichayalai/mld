@@ -4,12 +4,7 @@ import pandas as pd
 import joblib
 
 # Load trained model
-model_hyper_rf = joblib.load("loan_model_hyperparameter_tuned_rf.pkl")
-model_logreg = joblib.load("loan_model_logistic_regression.pkl")
-model_rf = joblib.load("loan_model_random_forest.pkl")
 model_default = joblib.load("model.pkl")
-model_brf = joblib.load("modelbrf.pkl")
-model_balanced_rf = joblib.load("loan_model_balanced_random_forest.pkl")
 
 # You can update this with your actual best model's metrics
 best_model_name = "Balanced Random Forest"
